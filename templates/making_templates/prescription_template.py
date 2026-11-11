@@ -74,27 +74,29 @@ os.makedirs("./test_files", exist_ok=True)
 # ── Step 1: Create template with textboxes ─────────────────────────────────────
 print("Step 1: Creating template with textboxes...")
 autofilled_prescription = AutofilledPrescription(RAW_TEMPLATE)
-autofilled_prescription.create_textbox("FirstName", 1, 106, 205, 130)
-autofilled_prescription.create_textbox("LastName", 1, 317, 205, 165)
-autofilled_prescription.create_textbox("Address", 1, 97, 238, 260)
-autofilled_prescription.create_textbox("City", 1, 399, 238, 115)
-autofilled_prescription.create_textbox("State", 1, 84, 271, 115)
-autofilled_prescription.create_textbox("Zipcode", 1, 227, 271, 70)
-autofilled_prescription.create_textbox("Phone Number", 1, 380, 271, 130)
-autofilled_prescription.create_textbox("Birth Month", 1, 390, 305, 25)
-autofilled_prescription.create_textbox("Birth Day", 1, 423, 305, 25)
-autofilled_prescription.create_textbox("Birth Year", 1, 456, 304, 25, font_size=10, alignment=0)
+autofilled_prescription.create_textbox("FirstName", 1, 106, 280, 130)
+autofilled_prescription.create_textbox("LastName", 1, 385, 280, 165)
+autofilled_prescription.create_textbox("Address", 1, 97, 305, 260)
+autofilled_prescription.create_textbox("City", 1, 399, 305, 115)
+autofilled_prescription.create_textbox("State", 1, 84, 332, 115)
+autofilled_prescription.create_textbox("Zipcode", 1, 227, 332, 70)
+autofilled_prescription.create_textbox("Phone Number", 1, 420, 332, 130)
+autofilled_prescription.create_textbox("DOB", 1, 390, 360, 91, font_size=12, alignment=0)
 autofilled_prescription.create_textbox("Med Note", 1, 60, 665, width=495, height=65, font_size=8, alignment=0)
 autofilled_prescription.create_checkbox("Foot Product", 1, 272, 575)
 autofilled_prescription.create_checkbox("Hand Product", 1, 272, 590)
-autofilled_prescription.create_textbox("DoctorContactID", 1, 547, 61.5, 100, font_size=7, alignment=0)
-autofilled_prescription.create_textbox("OutgoingFaxNumber", 1, 560, 71.25, 100, font_size=7, alignment=0)
+autofilled_prescription.create_textbox("DoctorContactID", 1, 520, 93.5, 100, font_size=7, alignment=0)
+autofilled_prescription.create_textbox("OutgoingFaxNumber", 1, 530, 104.25, 100, font_size=7, alignment=0)
 
 autofilled_prescription.save_pdf(TEXTBOX_TEMPLATE)
 print(f"Template with textboxes saved to: {TEXTBOX_TEMPLATE}")
 
 # ── Step 2: Fill with fake data ────────────────────────────────────────────────
 print("\nStep 2: Filling template with fake data...")
+birth_month = "03"
+birth_day   = "13"
+birth_year  = "1978"
+
 fake_data = {
     "FirstName": "Divyesh",
     "LastName": "Ved",
@@ -103,9 +105,7 @@ fake_data = {
     "State": "GA",
     "Zipcode": "30308",
     "Phone Number": "4045551234",
-    "Birth Month": "03",
-    "Birth Day": "13",
-    "Birth Year": "1978",
+    "DOB": f"{int(birth_month):02d}/{int(birth_day):02d}/{int(birth_year):04d}",
     "Med Note": 'I am ordering the Motus Hand / Foot Rehabilitation System, a robotic based neuro-rehabilitation therapy system for use at home. My patient would functionally benefit from the active assistance and neuromuscular re-education to improve their active and passive range of motion, reduce tone, and increase strength. Additionally, it would improve fine and gross motor functions to assist in eating, dressing, walking and other activities of daily living.',
     "Foot Product": "True",
     "Hand Product": "False",
